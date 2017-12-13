@@ -1,7 +1,7 @@
 import { UserConstants } from '../constants';
 import { UserService } from '../services';
 import { AlertActions } from './AlertActions';
-import { History } from '../helpers';
+import { BrowserHistory } from '../helpers';
 
 export const UserActions = {
     login,
@@ -18,7 +18,7 @@ function login(username,password) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    History.push('/');
+                    BrowserHistory.push('/');
                 },
                 error => {
                     dispatch(failure(error));
@@ -34,6 +34,7 @@ function login(username,password) {
 
 function logout() {
     UserService.logout();
+    BrowserHistory.push('/');
     return { type: UserConstants.LOGOUT };
 }
 
@@ -45,7 +46,7 @@ function register(user) {
             .then(
                 user => { 
                     dispatch(success());
-                    History.push('/login');
+                    BrowserHistory.push('/login');
                     dispatch(AlertActions.success('Registration successful'));
                 },
                 error => {

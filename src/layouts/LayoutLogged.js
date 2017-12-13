@@ -1,18 +1,21 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React from 'react';
-import RootRoute from '../routes/RootRoute';
+import { connect } from 'react-redux'
+import { UserActions } from '../actions/UserActions';
+import LayoutLoggedView from './LayoutLoggedView';
 
-class LayoutLogged extends React.Component {
-  render() {
-    return (
-      <div>
-        Logged
-        <main>
-          <RootRoute/>
-        </main>
-      </div>
-    );
-  }
-}
-export default LayoutLogged;
+const mapStateToProps = state => ({
+});
+
+const mapDispatchToProps = dispatch => ({
+    logout: () =>{
+      dispatch(UserActions.logout());
+    }
+});
+
+const LayoutLogged = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LayoutLoggedView)
+
+export default LayoutLogged

@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Store } from './helpers';
+import { BrowserHistory } from './helpers/BrowserHistory';
 
 ReactDOM.render((
 <Provider store={Store}>
-    <BrowserRouter>    
+    <Router history={BrowserHistory}>    
         <App />
-    </BrowserRouter>
+    </Router>
 </Provider>
 ), document.getElementById('root'));
 registerServiceWorker();

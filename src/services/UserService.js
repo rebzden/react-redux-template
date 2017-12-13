@@ -17,7 +17,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch('/users/authenticate', requestOptions)
+    return fetch('https://httpbin.org/post', requestOptions)
         .then(response => {
             if (!response.ok) { 
                 return Promise.reject(response.statusText);
@@ -26,6 +26,7 @@ function login(username, password) {
             return response.json();
         })
         .then(user => {
+            user = {token:'blalbla'};
             // login successful if there's a jwt token in the response
             if (user && user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
